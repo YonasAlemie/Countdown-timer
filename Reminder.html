@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Reminder / ማስታወሻ </title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-image: url('gena.jpg'); /* Change this URL to your preferred background image */
+      background-size: cover;
+      color: white;
+      text-align: center;
+      background-blur: 5px;
+    }
+
+    .timer-container {
+      background: rgba(0, 0, 0, 0.5); 
+      padding: 30px;
+      border-radius: 10px;
+      width: 80%;
+      max-width: 500px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    }
+
+    .title {
+      font-size: 36px;
+      margin-bottom: 20px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    .countdown {
+      font-size: 48px;
+      font-weight: bold;
+      margin-top: 20px;
+      color: #00FF00; /* Bright digital clock green */
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    }
+
+    .event-name {
+      font-size: 24px;
+      margin-bottom: 15px;
+    }
+
+    .event-description {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="timer-container">
+    <div class="event-name">በ EOTC የሕንድ ምእመናን ጉባኤ ልዩ የገና በዓል መርሐ ግብር</div>
+    <div class="event-description">The event will begin at 5:30 PM IST.</div>
+    <div class="title"> መርሐ ግብሩ ሊጀመር ... </div>
+    <div id="countdown" class="countdown"></div>
+  </div>
+
+  <script>
+    function updateCountdown() {
+      const eventDate = new Date("2025-01-05T17:30:00+05:30"); // Set the event date (5:30 PM IST on January 5, 2025)
+      const now = new Date();
+      const timeDifference = eventDate - now;
+
+      if (timeDifference <= 0) {
+        document.getElementById('countdown').innerHTML = "The event has started!";
+        return;
+      }
+
+      const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+      document.getElementById('countdown').innerHTML =
+        `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    // Update the countdown every second
+    setInterval(updateCountdown, 1000);
+  </script>
+
+</body>
+</html>
